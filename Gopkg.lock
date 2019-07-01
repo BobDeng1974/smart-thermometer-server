@@ -10,6 +10,14 @@
   version = "v6.0.0"
 
 [[projects]]
+  digest = "1:0afa63759ae8c5aa13d813346e414e7ed3bde76a98f48b9ebe3272f5a5e2f7ec"
+  name = "github.com/franela/goblin"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "cd5d08fb4ede9eaac1812fdb513552e7404eae2e"
+  version = "0.0.2"
+
+[[projects]]
   digest = "1:cbec35fe4d5a4fba369a656a8cd65e244ea2c743007d8f6c1ccb132acf9d1296"
   name = "github.com/gorilla/mux"
   packages = ["."]
@@ -30,6 +38,7 @@
   analyzer-version = 1
   input-imports = [
     "github.com/caarlos0/env",
+    "github.com/franela/goblin",
     "github.com/gorilla/mux",
     "github.com/urfave/negroni",
   ]
