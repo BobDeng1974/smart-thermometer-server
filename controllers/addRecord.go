@@ -1,15 +1,31 @@
 package controllers
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/unsign3d/smart-thermometer-server/utils"
-	"go.mongodb.org/mongo-driver/bson"
+
+	"models"
 )
 
 func AddRecord(w http.ResponseWriter, r *http.Request) {
-	client := utils.MongoClient()
-	collection := client.Database("sensor-data").Collection("sensor-data")
-	res, err := collection.InsertOne(ctx, bson.M{"name": "pi", "value": 3.14159})
+	database := utils.Database()
+	collection := database.Collection("records")
+	record := parseBody(w, r)
+	models.SaveRecord(collection, record)
 	w.WriteHeader(http.StatusCreated)
+}
+
+func parseBody(w http.ResponseWriter, r *http.Request) models.Record {
+	recordBody := models.Record{}
+	decoder := json.NewDecoder(r.Body)
+	err := decoder.Decode(&recordBody)
+
+	if err != nil {
+		w.WriteHeader(http.StatusNotAcceptable)
+		fmt.Fprintf(w, err.Error())
+	}
+	return recordBody
 }
