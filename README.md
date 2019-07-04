@@ -22,5 +22,21 @@ ENVIRONMENT=lololol SUSERNAME=lol SPASSWORD=lol go run main.go
 ```
 where SUSERNAME and SPASSWORD are environment variables for the basic auth
 
+
+## Deploy with Docker compose
+You will need to have docker and docker compose
+
+You will need to create a .env.production file, you can use mock-env as a reference
+You will need also to create a /data on your home folder
+```sh
+mkdir $HOME/data
+```
+
+in order to start the server in production you will need to run the following code
+
+```sh
+sudo docker-compose -f docker-compose-production.yml up -d
+```
+
 ## Licence
 https://www.mozilla.org/media/MPL/2.0/index.815ca599c9df.txt
